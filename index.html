@@ -1,41 +1,51 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Darling Riya</title>
     <style>
         body {
-            background-color: #ffdeeb; /* Light pink background */
+            background-color: #ffdeeb;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
+            transition: background-color 0.5s ease;
+        }
+        /* This keeps the question centered but allows the poem to scroll */
+        #celebration { 
+            display: none; 
+            width: 100%;
+            max-width: 500px;
+            margin-top: 50px;
         }
         h1 { color: #b0005d; margin-bottom: 20px; }
-        .buttons { display: flex; gap: 15px; align-items: center; justify-content: center; }
-        #yesBtn {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
+        .buttons { display: flex; gap: 15px; align-items: center; justify-content: center; flex-wrap: wrap; }
+        #yesBtn { background-color: #4caf50; color: white; border: none; padding: 10px 20px; font-size: 18px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        #noBtn { background-color: #f44336; color: white; border: none; padding: 10px 20px; font-size: 18px; border-radius: 8px; cursor: pointer; }
+        img { width: 180px; border-radius: 10px; margin-bottom: 10px; }
+        
+        /* Note Style at the very end */
+        .love-note {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px solid #ffc0cb;
+            margin: 40px 0; /* Adds space above and below */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        #noBtn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 10px 20px;
+        .poem-text {
+            font-style: italic;
+            color: #b0005d;
+            line-height: 2;
             font-size: 18px;
-            border-radius: 8px;
-            cursor: pointer;
         }
-        #celebration { display: none; }
-        img { width: 180px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -51,37 +61,35 @@
 
     <div id="celebration">
         <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3ImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/MDJ9IbxxvDUQM/giphy.gif" alt="Happy cats">
-        <h1>Knew you would say yes! 🎉</h1>
-        <p>You just made me the happiest person! ❤️</p>
+        <h1>Knew you would say yes, Riya! 🎉</h1>
+        
+        <div class="love-note">
+            <div class="poem-text">
+                <p><strong>To my Valentine...</strong></p>
+                <p>loving you is the finest fate that ever found me.</p>
+                <p>Today the roses will gather around you,</p>
+                <p>to tell you you're the pulse in my hands,</p>
+                <p>You're my heart in front of me,</p>
+                <p>and that I absolutely love you,</p>
+                <p>I love you more than my eyes love to see you.</p>
+                <p>I love you beyond the calendar,</p>
+                <p>beyond the tremble of years,</p>
+                <p>beyond stars themselves.</p>
+                <p>I love you...</p>
+            </div>
+        </div>
     </div>
 
     <script>
         let clickCount = 0;
-        const phrases = [
-            "No", 
-            "Are you positive? 🤨", 
-            "Pookie please... 🥺", 
-            "If you say no, I will be really sad... 😭", 
-            "I will be very sad... 💔", 
-            "Please??? 🥺", 
-            "Don't do this to me... 😔", 
-            "Last chance!!! ⚠️"
-        ];
+        const phrases = ["No", "Are you positive? 🤨", "Pookie please... 🥺", "If you say no, I will be really sad... 😭", "I will be very sad... 💔", "Please??? 🥺", "Don't do this to me... 😔", "Last chance!!! ⚠️"];
 
         function growYes() {
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
-            
             clickCount++;
-            
-            // Cycle through the "No" button phrases
-            if (clickCount < phrases.length) {
-                noBtn.innerText = phrases[clickCount];
-            } else {
-                noBtn.innerText = "Last chance!!! ⚠️";
-            }
-
-            // Make "Yes" button grow significantly each time
+            if (clickCount < phrases.length) noBtn.innerText = phrases[clickCount];
+            else noBtn.innerText = "Last chance!!! ⚠️";
             const newSize = 18 + (clickCount * 25); 
             yesBtn.style.fontSize = newSize + 'px';
             yesBtn.style.padding = (10 + clickCount * 10) + 'px ' + (20 + clickCount * 15) + 'px';
@@ -90,25 +98,10 @@
         function showLove() {
             document.getElementById('question-container').style.display = 'none';
             document.getElementById('celebration').style.display = 'block';
-            document.body.style.backgroundColor = "#ffc0cb"; // Darker pink for celebration
+            document.body.style.backgroundColor = "#ffc0cb";
+            // This allows the page to scroll down to the note
+            document.body.style.justifyContent = "flex-start";
         }
     </script>
 </body>
 </html>
-<div id="celebration">
-    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3ImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/MDJ9IbxxvDUQM/giphy.gif" alt="Happy cats">
-    <h1>Knew you would say yes, Riya! 🎉</h1>
-    <div style="font-style: italic; color: #b0005d; line-height: 1.6; font-size: 18px;">
-        <p>To my Valentine...</p>
-        <p>loving you is the finest fate that ever found me.</p>
-        <p>Today the roses will gather around you,</p>
-        <p>to tell you you're the pulse in my hands,</p>
-        <p>You're my heart in front of me,</p>
-        <p>and that I absolutely love you,</p>
-        <p>I love you more than my eyes love to see you.</p>
-        <p>I love you beyond the calendar,</p>
-        <p>beyond the tremble of years,</p>
-        <p>beyond stars themselves.</p>
-        <p>I love you...</p>
-    </div>
-</div>
