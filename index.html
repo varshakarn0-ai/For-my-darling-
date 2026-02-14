@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #ffdeeb; /* Light pink background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        h1 { color: #b0005d; margin-bottom: 20px; }
+        .buttons { display: flex; gap: 15px; align-items: center; justify-content: center; }
+        #yesBtn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #celebration { display: none; }
+        img { width: 180px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <div id="question-container">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3ImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/c76IJLufpNwSULPk77/giphy.gif" alt="Asking bear">
+        <h1>Will you be my Valentine, Riya? ❤️</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="showLove()">Yes</button>
+            <button id="noBtn" onclick="growYes()">No</button>
+        </div>
+    </div>
+
+    <div id="celebration">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3R4Z3J0Z3ImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/MDJ9IbxxvDUQM/giphy.gif" alt="Happy cats">
+        <h1>Knew you would say yes! 🎉</h1>
+        <p>You just made me the happiest person! ❤️</p>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const phrases = [
+            "No", 
+            "Are you positive? 🤨", 
+            "Pookie please... 🥺", 
+            "If you say no, I will be really sad... 😭", 
+            "I will be very sad... 💔", 
+            "Please??? 🥺", 
+            "Don't do this to me... 😔", 
+            "Last chance!!! ⚠️"
+        ];
+
+        function growYes() {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            
+            clickCount++;
+            
+            // Cycle through the "No" button phrases
+            if (clickCount < phrases.length) {
+                noBtn.innerText = phrases[clickCount];
+            } else {
+                noBtn.innerText = "Last chance!!! ⚠️";
+            }
+
+            // Make "Yes" button grow significantly each time
+            const newSize = 18 + (clickCount * 25); 
+            yesBtn.style.fontSize = newSize + 'px';
+            yesBtn.style.padding = (10 + clickCount * 10) + 'px ' + (20 + clickCount * 15) + 'px';
+        }
+
+        function showLove() {
+            document.getElementById('question-container').style.display = 'none';
+            document.getElementById('celebration').style.display = 'block';
+            document.body.style.backgroundColor = "#ffc0cb"; // Darker pink for celebration
+        }
+    </script>
+</body>
+</html>
